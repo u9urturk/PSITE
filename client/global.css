@@ -1,0 +1,222 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Tailwind CSS theme
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+  */
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 140 50% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 140 50% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 140 50% 15%;
+
+    --primary: 140 60% 25%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 120 20% 92%;
+    --secondary-foreground: 140 50% 15%;
+
+    --muted: 120 15% 95%;
+    --muted-foreground: 140 20% 45%;
+
+    --accent: 120 30% 88%;
+    --accent-foreground: 140 50% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 120 20% 85%;
+    --input: 120 20% 85%;
+    --ring: 140 60% 25%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 120 15% 97%;
+    --sidebar-foreground: 140 40% 20%;
+    --sidebar-primary: 140 60% 25%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 120 25% 90%;
+    --sidebar-accent-foreground: 140 50% 15%;
+    --sidebar-border: 120 20% 85%;
+    --sidebar-ring: 140 60% 45%;
+
+    /* Nature-themed color palette */
+    --nature-50: 120 60% 97%;
+    --nature-100: 120 50% 92%;
+    --nature-200: 120 40% 84%;
+    --nature-300: 120 45% 72%;
+    --nature-400: 125 50% 58%;
+    --nature-500: 135 55% 45%;
+    --nature-600: 140 60% 35%;
+    --nature-700: 145 65% 28%;
+    --nature-800: 150 70% 22%;
+    --nature-900: 155 80% 18%;
+    --nature-950: 160 85% 12%;
+
+    /* Earth-themed colors */
+    --earth-50: 40 40% 96%;
+    --earth-100: 40 35% 90%;
+    --earth-200: 40 30% 80%;
+    --earth-300: 40 25% 68%;
+    --earth-400: 40 20% 55%;
+    --earth-500: 35 25% 42%;
+    --earth-600: 30 30% 32%;
+    --earth-700: 25 35% 25%;
+    --earth-800: 20 40% 18%;
+    --earth-900: 15 45% 12%;
+  }
+
+  .dark {
+    --background: 155 80% 8%;
+    --foreground: 120 30% 88%;
+
+    --card: 155 70% 10%;
+    --card-foreground: 120 30% 88%;
+
+    --popover: 155 70% 10%;
+    --popover-foreground: 120 30% 88%;
+
+    --primary: 135 55% 55%;
+    --primary-foreground: 155 80% 8%;
+
+    --secondary: 150 40% 15%;
+    --secondary-foreground: 120 30% 88%;
+
+    --muted: 150 40% 15%;
+    --muted-foreground: 120 20% 65%;
+
+    --accent: 150 40% 15%;
+    --accent-foreground: 120 30% 88%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 150 40% 20%;
+    --input: 150 40% 20%;
+    --ring: 135 55% 55%;
+    --sidebar-background: 155 80% 6%;
+    --sidebar-foreground: 120 25% 85%;
+    --sidebar-primary: 135 55% 55%;
+    --sidebar-primary-foreground: 155 80% 8%;
+    --sidebar-accent: 150 40% 12%;
+    --sidebar-accent-foreground: 120 25% 85%;
+    --sidebar-border: 150 40% 20%;
+    --sidebar-ring: 135 55% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .animation-delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 0.4s;
+  }
+
+  .backdrop-blur-md {
+    backdrop-filter: blur(12px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: theme('colors.nature.100');
+}
+
+::-webkit-scrollbar-thumb {
+  background: theme('colors.nature.400');
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.nature.600');
+}
