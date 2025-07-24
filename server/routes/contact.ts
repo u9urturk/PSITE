@@ -2,7 +2,7 @@ import { RequestHandler } from "express";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 import { contactLimiter } from "./contact-limiter";
-import { logContactRequest, dailyIpRequests } from "../lib/contact-log";
+import { logContactRequest } from "../lib/contact-log";
 dotenv.config();
 
 // Bu alanları kendi SMTP bilgilerinize göre doldurun
@@ -19,10 +19,8 @@ export const handleContact: RequestHandler = async (req, res) => {
     // IP loglama ve günlük limitleme
     const ip = req.headers['x-forwarded-for']?.toString().split(',')[0] || req.socket.remoteAddress || '';
     const { name, surname, email, phone, area, details } = req.body;
-    logContactRequest(ip, email);
-    if (dailyIpRequests[ip] > 5) {
-        return res.status(429).json({ error: "Bu IP için günlük limit aşıldı." });
-    }
+    logContactRequest(email);
+    // IP tabanlı rate limit devre dışı
 
     if (!name || !surname || !email || !phone) {
         return res.status(400).json({ error: "Zorunlu alanlar eksik." });
