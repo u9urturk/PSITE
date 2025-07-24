@@ -6,6 +6,9 @@ import { contactRateLimited } from "./routes/contact";
 export function createServer() {
   const app = express();
 
+  // Netlify/production ortamında IP için trust proxy ayarı
+  app.set('trust proxy', true);
+
   // Middleware
   app.use(cors());
   app.use(express.json());

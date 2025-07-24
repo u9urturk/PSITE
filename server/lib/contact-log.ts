@@ -33,10 +33,11 @@ export const dailyIpRequests: Record<string, number> = {};
 // Log kaydı ekle
 export function logContactRequest(ip: string, email?: string) {
   dailyIpRequests[ip] = (dailyIpRequests[ip] || 0) + 1;
-  const now = new Date();
-  const emailPart = email ? ` | ${email}` : '';
-  const logLine = `${now.toLocaleString('tr-TR', { hour12: false })} | ${ip}${emailPart}\n`;
+  // Production ortamında dosya loglama tamamen devre dışı
   if (!isProduction()) {
+    const now = new Date();
+    const emailPart = email ? ` | ${email}` : '';
+    const logLine = `${now.toLocaleString('tr-TR', { hour12: false })} | ${ip}${emailPart}\n`;
     const logFile = getLogFileName();
     if (!fs.existsSync(LOG_DIR)) fs.mkdirSync(LOG_DIR);
     if (!fs.existsSync(logFile)) {
@@ -45,7 +46,6 @@ export function logContactRequest(ip: string, email?: string) {
     }
     fs.appendFileSync(logFile, logLine);
   }
-  // Production'da dosya loglama devre dışı, sadece memory'de tutulur
 }
 
 // Günlük logu txt olarak mail at
