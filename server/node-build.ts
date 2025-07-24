@@ -6,7 +6,10 @@ const app = createServer();
 const port = process.env.PORT || 3000;
 
 // In production, serve the built SPA files
-const __dirname = import.meta.dirname;
+let __dirname;
+if (typeof __dirname === 'undefined') {
+  __dirname = path.resolve();
+}
 const distPath = path.join(__dirname, "../spa");
 
 // Serve static files

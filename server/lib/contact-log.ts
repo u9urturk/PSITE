@@ -3,8 +3,11 @@ import path from 'path';
 import nodemailer from 'nodemailer';
 import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+let __filename, __dirname;
+if (typeof __filename === 'undefined' || typeof __dirname === 'undefined') {
+  __filename = __filename || __filename;
+  __dirname = __dirname || process.cwd();
+}
 
 const LOG_DIR = path.resolve(__dirname, '../../logs');
 // LOG_FILE artık gün bazlı isimlendirilir
