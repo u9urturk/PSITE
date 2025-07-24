@@ -9,9 +9,7 @@
   external_node_modules = ["express"]
   node_bundler = "esbuild"
 
-[[functions]]
-  schedule = "0 3 * * *"
-  path = "/.netlify/functions/send-daily-log"
+
 
 [[redirects]]
   force = true
